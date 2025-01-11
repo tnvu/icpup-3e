@@ -1,3 +1,8 @@
+# Finger exercise: Use the find_root function in Figure 4-3 to print
+# the sum of approximations to the square root of 25, the cube root of
+# -8, and the fourth root of 16. Use 0.001 as epsilon.
+
+# Figure 4-3
 def find_root(x, power, epsilon):
     if x < 0 and power % 2 == 0:
         return None # Negative number has no even powered roots
