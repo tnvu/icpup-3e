@@ -84,9 +84,9 @@ def already_visited(node, path):
             return True
     return False
 
-def DFS(graph, start, end, lt, path, shortest, to_print=False):
+def DFS(graph, start, end, cmp, path, shortest, to_print=False):
     """Assumes graph is a Digraph; start and end are nodes;
-       lt is a less than function lt(path, shortest);
+       cmp is a compare than function cmp(path, shortest);
        path and shortest are lists of edges
        Returns a shortest path from start to end in graph"""
     if to_print:
@@ -97,8 +97,8 @@ def DFS(graph, start, end, lt, path, shortest, to_print=False):
         next = e.get_destination()
         if already_visited(next, path): # avoid cycles
             continue
-        new_path = DFS(graph, next, end, lt, path + [e], shortest, to_print)
-        if new_path != None and (shortest == None or lt(new_path, shortest)):
+        new_path = DFS(graph, next, end, cmp, path + [e], shortest, to_print)
+        if new_path != None and (shortest == None or cmp(new_path, shortest)):
             shortest = new_path
     return shortest
 
@@ -106,8 +106,8 @@ def DFS(graph, start, end, lt, path, shortest, to_print=False):
 def shortest_path(graph, start, end, to_print=False):
     """Assumes graph is a Digraph; start and end are nodes
        Returns a shortest path from start to end in graph"""
-    lt = lambda x, y: len(x) < len(y)
-    return DFS(graph, start, end, lt, [], None, to_print)
+    cmp = lambda x, y: len(x) < len(y)
+    return DFS(graph, start, end, cmp, [], None, to_print)
 
 def test_SP():
     nodes = []
@@ -133,7 +133,7 @@ test_SP()
 
 def lightest_path(graph, start, end, to_print=False):
     """Assumes graph is a Digraph; start and end are nodes"""
-    def lt(a, b):
+    def cmp(a, b):
         weight_a = 0
         for e in a:
             weight_a += e.get_weight()
@@ -141,7 +141,7 @@ def lightest_path(graph, start, end, to_print=False):
         for e in b:
             weight_b += e.get_weight()
         return weight_a < weight_b
-    return DFS(graph, start, end, lt, [], None, to_print)
+    return DFS(graph, start, end, cmp, [], None, to_print)
 
 def test_LP():
     nodes = []
