@@ -1,3 +1,6 @@
+# Finger exercise: Modify the code in Figure 20-5 so that it produces
+# the plot in Figure 20-8.
+
 import numpy as np
 import matplotlib.pyplot as plt
 
