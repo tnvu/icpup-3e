@@ -37,4 +37,4 @@ def fit_data(input_file):
     
     plt.legend(loc = 'best')
 
-fit_data('springData.csv')
+fit_data('./ch20/springData.csv')
